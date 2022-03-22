@@ -32,4 +32,4 @@
 *.app
 
 # UML
-*.vpp.bak*
+*.vpp.*
