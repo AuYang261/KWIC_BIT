@@ -33,3 +33,9 @@
 
 # UML
 *.vpp.*
+
+# py
+__pycache__/
+
+# config
+.vscode/
