@@ -12,14 +12,15 @@ class Passage;
 
 class PyAPI {
    public:
-    PyAPI() : _passage() {}
     virtual ~PyAPI() {}
     static PyAPI& Singleton();
 
     std::string getPassage();
     void findWord(std::string s);
+    void sortPassage();
 
    private:
+    PyAPI() : _passage() {}
     Passage* _passage;
     inline static PyAPI* _singletonPtr;
 };

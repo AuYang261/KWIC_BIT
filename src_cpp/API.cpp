@@ -12,8 +12,14 @@ static PyObject *_findWord(PyObject *self, PyObject *args) {
         return NULL;
     }
     std::cout << _word << std::endl;
-    // 好像不能无返回值
+    // 不能无返回值，可以返回Py_None
     return PyUnicode_FromString("Got it!");
+    // return Py_None;
+}
+
+static PyObject *_sort(PyObject *self, PyObject *args) {
+    // PyAPI::Singleton().sortPassage();
+    return Py_None;
 }
 
 static PyMethodDef ModuleMethods[] = {
@@ -23,8 +29,9 @@ static PyMethodDef ModuleMethods[] = {
         METH_VARARGS,      // 固定
         ""                 // 说明文字
     },*/
-    {"getPassage", _getPassage, METH_VARARGS, "注册一个客户端"},
-    {"findWord", _findWord, METH_VARARGS, "注销一个客户端"},
+    {"getPassage", _getPassage, METH_VARARGS, "获取passage"},
+    {"findWord", _findWord, METH_VARARGS, "查找word并标记之"},
+    {"sort", _sort, METH_VARARGS, "对各row排序"},
     {NULL, NULL, 0, NULL}};
 
 static struct PyModuleDef cModPyDem = {

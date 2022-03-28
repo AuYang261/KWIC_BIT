@@ -14,3 +14,7 @@ std::string PyAPI::getPassage() {
 void PyAPI::findWord(std::string s) {
     //
 }
+
+void PyAPI::sortPassage() {
+    // _passage.sort()
+}
