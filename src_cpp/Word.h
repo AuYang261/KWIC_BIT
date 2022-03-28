@@ -15,5 +15,5 @@ public:
 
 	// flagfound
 	bool ifFound();
-	bool setFound(bool found);
+	void setFound(bool found);
 };

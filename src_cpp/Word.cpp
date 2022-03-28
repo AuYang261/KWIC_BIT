@@ -3,6 +3,7 @@
 Word::Word(std::string initContent)
 {
 	content = initContent;
+	flagFound = false;
 }
 
 Word::~Word()
@@ -27,7 +28,7 @@ bool Word::ifFound()
 }
 
 // set flagFound, 1=matches
-bool Word::setFound(bool found)
+void Word::setFound(bool found)
 {
 	flagFound = found;
 }
