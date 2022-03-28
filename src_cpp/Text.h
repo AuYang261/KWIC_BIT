@@ -1,20 +1,20 @@
 #include <list>
-#include <vector>
 #include <string>
+#include <vector>
 
-class Word;
+#include "Word.h"
+
 class Row;
 
-class Text
-{
-private:
-	std::list<Word *> words;
+class Text {
+   private:
+    std::list<Word *> words;
 
-public:
-	Text(/* args */);	// need args
-	~Text();
+   public:
+    Text(/* args */);  // need args
+    ~Text();
 
-	void notify();
-	void find(std::string pattern);
-	std::vector<Row *> shift();
+    void notify();
+    void find(std::string pattern);
+    std::vector<Row *> shift();
 };
