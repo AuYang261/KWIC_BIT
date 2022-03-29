@@ -5,19 +5,19 @@
 #include "Word.h"
 
 using std::size_t;
-typedef std::list<Word *>::iterator WordIter;
 
 class Row;
 
 class Text {
    private:
     std::list<Word *> words;
+    bool match;
 
-   public:
+public:
     Text(std::string text);
     ~Text();
 
-    void notify();
-    void find(std::string pattern);
-    std::list<Row *> shift();
+    void find(std::vector<std::string> patterns);
+    // std::list<Row *> shift();
+    bool isMatch();
 };
