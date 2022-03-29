@@ -45,4 +45,3 @@ test.*
 
 # self
 .gitignore
-./src_cpp/passage-row.cpp
