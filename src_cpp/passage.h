@@ -6,15 +6,16 @@
 #include <stdlib.h>
 #include <string>
 #include <vector>
+#include "Text.h" 
 
 class Passage
 {
 public:
-    list<Text *> texts;
-    vector<Row *> rows;
-    sortRow();
-    void input(FILE *fp);
-    string toStr();
+    std::list<Text *> texts;
+    std::vector<Row *> rows;
+    void sortRow();
+    void input(std::string filename);
+    std::string toStr();
 };
 
 #endif

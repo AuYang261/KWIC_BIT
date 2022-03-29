@@ -1,8 +1,8 @@
 // row.cpp
-#include <row.h>
-bool operator<(Row *a) const
+#include "row.h"
+bool Row::operator<(Row&a)//在此处还是选择使用引用 
 {
-    auto num = [](char s) -> int
+    auto num = [](char s)
     {
         int n = int(s);
         if ('A' <= s && s <= 'Z')
@@ -11,7 +11,7 @@ bool operator<(Row *a) const
         }
         else if ('a' <= s && s <= 'z')
         {
-            return 2 * (n - 97) - 1;
+            return 2 * (n - 96) - 1;
         }
         else
         {
@@ -19,7 +19,7 @@ bool operator<(Row *a) const
         }
     };
     std::string str1 = this->toStr();
-    std::string str2 = a->toStr();
+    std::string str2 = a.toStr();
     int A = 0, B = 0;
     for (int i = 0; i < (signed)str1.size(); i++)
     {
@@ -39,12 +39,13 @@ bool operator<(Row *a) const
     else
         return 0;
 }
-string toStr() const
+std::string Row::toStr()
 {
     std::string temp;
-    for (auto i = pos;; i++)
-    {
-        temp += i.content;
+    for(auto i=pos;i!=pos.end();i++)
+    {   auto tmp=std::string i.getcontent();
+        temp += tmp;
+        temp+=' ';
     }
     return temp;
 };

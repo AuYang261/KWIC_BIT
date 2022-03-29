@@ -1,16 +1,19 @@
-#include <passage.h>
-sortRow()
+#include "passage.h" 
+#include "row.h"
+void Passage::sortRow()
 {
-    std::sort(rows.begin(), rows.end(), [](Row *a, Row *b) -> bool
-              { return (*a < *b); });
-}
-void input(FILE *fp)
+    std::sort(rows.begin(), rows.end(), [](Row a, Row&b) -> bool{ return (a <&b); });
+}//ÕâÀï²»¶Ô³Æµ«ÊÇ²»ÖªµÀ¸ÃÔõÃ´°ì 
+
+void input(std::string)
 { //ï¿½Ë´ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½Ô¼ï¿½
+
+    std::string line;
     if ((fp = fopen(filename, "r")) == NULL)
     {
         throw("ERROR");
     }
-    string line;
+    
     else while (getline(fp, line))
     { //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó²ï¿½Öªï¿½ï¿½ï¿½Ü²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½qwq
         string tmp;
