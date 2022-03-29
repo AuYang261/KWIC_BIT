@@ -20,7 +20,7 @@ public:
     Text(std::string text);
     ~Text();
 
-    void find(std::vector<std::string> patterns);
+    void find(std::string patternStr);
     // std::list<Row *> shift();
     bool isMatch();
     const std::list<Word *> &getWordsList() const { return words; }
