@@ -2,6 +2,7 @@
  */
 
 #ifndef __PyAPI_h__
+#define __PyAPI_h__
 
 #include <Python.h>
 

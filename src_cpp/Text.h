@@ -1,3 +1,6 @@
+#ifndef __Text_h__
+#define __Text_h__
+
 #include <list>
 #include <string>
 #include <vector>
@@ -20,4 +23,7 @@ public:
     void find(std::vector<std::string> patterns);
     // std::list<Row *> shift();
     bool isMatch();
+    const std::list<Word *> &getWordsList() const { return words; }
 };
+
+#endif
