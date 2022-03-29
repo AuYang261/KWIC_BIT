@@ -1,15 +1,20 @@
-//Row.h 
+#ifndef PASSAGE_H
+#define PASSAGE_H
 #include <algorithm>
 #include <iostream>
 #include <list>
 #include <stdlib.h>
 #include <string>
 #include <vector>
-class Row
+
+class Passage
 {
 public:
-    std::list<Word*>::iterator pos;
-    bool operator<( Row *a) const;
+    list<Text *> texts;
+    vector<Row *> rows;
+    sortRow();
+    void input(FILE *fp);
     string toStr();
 };
-    
+
+#endif
