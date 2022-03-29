@@ -4,6 +4,9 @@
 
 #include "Word.h"
 
+using std::size_t;
+typedef std::list<Word *>::iterator WordIter;
+
 class Row;
 
 class Text {
@@ -11,10 +14,10 @@ class Text {
     std::list<Word *> words;
 
    public:
-    Text(/* args */);  // need args
+    Text(std::string text);
     ~Text();
 
     void notify();
     void find(std::string pattern);
-    std::vector<Row *> shift();
+    std::list<Row *> shift();
 };

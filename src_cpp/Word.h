@@ -14,6 +14,6 @@ public:
 	void updateContent(std::string newContent);
 
 	// flagfound
-	bool ifFound();
+	bool isFound();
 	void setFound(bool found);
 };

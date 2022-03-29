@@ -39,3 +39,10 @@ __pycache__/
 
 # config
 .vscode/
+
+# test file
+test.*
+
+# self
+.gitignore
+./src_cpp/passage-row.cpp
