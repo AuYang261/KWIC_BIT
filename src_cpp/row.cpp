@@ -1,6 +1,6 @@
 // row.cpp
 #include "row.h"
-bool Row::operator<(Row&a)//在此处还是选择使用引用 
+bool Row::operator<(Row &a) //锟节此达拷锟斤拷锟斤拷选锟斤拷使锟斤拷锟斤拷锟斤拷
 {
     auto num = [](char s)
     {
@@ -42,10 +42,22 @@ bool Row::operator<(Row&a)//在此处还是选择使用引用
 std::string Row::toStr()
 {
     std::string temp;
-    for(auto i=pos;i!=pos.end();i++)
-    {   auto tmp=std::string i.getcontent();
+    auto tempPos = pos;
+    for (auto i = pos;;)
+    {
+        if (i == _text.getWordsList().end())
+        {
+            continue;
+        }
+        auto tmp = (*i)->getContent();
         temp += tmp;
-        temp+=' ';
+        temp += ' ';
+
+        i++;
+        if (i == tempPos)
+        {
+            break;
+        }
     }
     return temp;
 };

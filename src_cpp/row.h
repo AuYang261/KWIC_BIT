@@ -8,10 +8,13 @@
 #include <string>
 #include <vector>
 #include "Word.h"
+#include "Text.h"
 class Row
-{public:
-    std::list<Word *>::iterator pos;//ÎÒÏÓoperatorÂé·³£¬È«²¿Ð´³Épublic
-    bool operator<(Row&a);//²»ÄÜconst ÒòÎªÒªµ÷ÓÃ 
+{
+public:
+    std::list<Word *>::iterator pos; //ï¿½ï¿½ï¿½ï¿½operatorï¿½é·³ï¿½ï¿½È«ï¿½ï¿½Ð´ï¿½ï¿½public
+    Text &_text;
+    bool operator<(Row &a); //ï¿½ï¿½ï¿½ï¿½const ï¿½ï¿½ÎªÒªï¿½ï¿½ï¿½ï¿½
     std::string toStr();
 };
 #endif

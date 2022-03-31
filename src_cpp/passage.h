@@ -2,11 +2,12 @@
 #define PASSAGE_H
 #include <algorithm>
 #include <iostream>
+#include <fstream>
 #include <list>
 #include <stdlib.h>
 #include <string>
 #include <vector>
-#include "Text.h" 
+#include "Text.h"
 
 class Passage
 {

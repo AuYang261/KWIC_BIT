@@ -22,7 +22,7 @@ void Word::updateContent(std::string newContent)
 }
 
 // return if the word match the pattern, 1=matches
-bool Word::isFound()
+bool Word::ifFound()
 {
 	return flagFound;
 }

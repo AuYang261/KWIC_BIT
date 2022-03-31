@@ -1,46 +1,57 @@
-#include "passage.h" 
+#include "passage.h"
 #include "row.h"
+
+std::vector<std::string> split(const std::string &str, const std::string &pattern)
+{
+    std::vector<std::string> res;
+    if (str == "")
+        return res;
+    //在字符串末尾也加入分隔符，方便截取最后一段
+    std::string strs = str + pattern;
+    size_t pos = strs.find(pattern);
+
+    while (pos != strs.npos)
+    {
+        std::string temp = strs.substr(0, pos);
+        res.push_back(temp);
+        //去掉已分割的字符串,在剩下的字符串中进行分割
+        strs = strs.substr(pos + 1, strs.size());
+        pos = strs.find(pattern);
+    }
+
+    return res;
+}
+
 void Passage::sortRow()
 {
-    std::sort(rows.begin(), rows.end(), [](Row a, Row&b) -> bool{ return (a <&b); });
-}//���ﲻ�ԳƵ��ǲ�֪������ô�� 
+    std::sort(rows.begin(), rows.end(), [](Row *a, Row *b) -> bool
+              { return (*a < *b); });
+} //���ﲻ�ԳƵ��ǲ�֪������ô��
 
-void input(std::string)
+void Passage::input(std::string filePath)
 { //�˴��õ����ļ���,���ظ��Լ�
-
-    std::string line;
-    if ((fp = fopen(filename, "r")) == NULL)
+    std::ifstream mapFile(filePath);
+    if (mapFile)
     {
-        throw("ERROR");
-    }
-    
-    else while (getline(fp, line))
-    { //���������Ӳ�֪���ܲ�������qwq
-        string tmp;
-        Text t;
-        tmp = strok(line, " "); // strok ���տո�ֿￄ1�7
-        int i = 0;
-        while (tmp)
+        std::string mapStr((std::istreambuf_iterator<char>(mapFile)),
+                           std::istreambuf_iterator<char>());
+        std::vector<std::string> lines = split(mapStr, "\n");
+        for (auto &i : lines)
         {
-            Word temp;
-            temp.content = tmp;
-            temp.id = i;
-            temp.flagFind = 0;
-            t.words.push_back(temp);
-            i++;
-            tmp = strok(NULL, " ");
+            auto words = split(i, " ");
+            texts.push_back(new Text(words));
         }
-        texts.push_back(t);
     }
 }
-string toStr()
+
+std::string Passage::toStr()
 {
-    string tmp;
-    string temp;
+    std::string tmp;
+    std::string temp;
     int n = (signed)rows.size();
     for (int i = 0; i < n; i++)
     {
-        tmp = rows[i].toStr();
+        tmp = rows[i]->toStr();
         temp += tmp;
         temp += '\n';
     }

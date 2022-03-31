@@ -2,28 +2,25 @@
 #define __Text_h__
 
 #include <list>
-#include <string>
 #include <vector>
-
+#include <string>
 #include "Word.h"
-
-using std::size_t;
 
 class Row;
 
-class Text {
-   private:
-    std::list<Word *> words;
-    bool match;
+class Text
+{
+private:
+	std::list<Word *> words;
 
 public:
-    Text(std::string text);
-    ~Text();
+	Text(std::vector<std::string> words); // need args
+	~Text();
 
-    void find(std::string patternStr);
-    // std::list<Row *> shift();
-    bool isMatch();
-    const std::list<Word *> &getWordsList() const { return words; }
+	void notify();
+	void find(std::string pattern);
+	std::vector<Row *> shift();
+	const std::list<Word *> &getWordsList() const { return words; }
 };
 
 #endif
