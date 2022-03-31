@@ -8,7 +8,7 @@
 #include <iostream>
 #include <string>
 
-class Passage;
+#include "passage.h"
 
 class PyAPI {
    public:
@@ -16,11 +16,12 @@ class PyAPI {
     static PyAPI& Singleton();
 
     std::string getPassage();
-    void findWord(std::string s);
+    void findWords(std::string words);
     void sortPassage();
+    void readFile(std::string filePath);
 
    private:
-    PyAPI() : _passage() {}
+    PyAPI() : _passage(new Passage) {}
     Passage* _passage;
     inline static PyAPI* _singletonPtr;
 };

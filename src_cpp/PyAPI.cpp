@@ -7,14 +7,10 @@ PyAPI &PyAPI::Singleton() {
     return *_singletonPtr;
 }
 
-std::string PyAPI::getPassage() {
-    //  return _passage->toStr();
-}
+void PyAPI::readFile(std::string filePath) { _passage->input(filePath); }
 
-void PyAPI::findWord(std::string s) {
-    //
-}
+std::string PyAPI::getPassage() { return _passage->toStr(); }
 
-void PyAPI::sortPassage() {
-    // _passage.sort()
-}
+void PyAPI::findWords(std::string words) { _passage->findWords(words); }
+
+void PyAPI::sortPassage() { _passage->sortRow(); }

@@ -1,5 +1,6 @@
 import PyAPI
 
+print(PyAPI.readFile("../LICENSE"))
 print(PyAPI.getPassage())
-print(PyAPI.findWord("hello c++!"))
+print(PyAPI.findWords("hello c++!"))
 print(PyAPI.sort())

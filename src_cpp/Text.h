@@ -14,7 +14,7 @@ class Text {
 
    public:
     Text(std::list<std::string> words);  // need args
-    ~Text();
+    virtual ~Text();
 
     void notify();
     void find(std::string pattern);

@@ -1,4 +1,4 @@
-#include "passage.h"
+#include "Passage.h"
 
 std::list<std::string> split(const std::string &str,
                              const std::string &pattern) {
@@ -24,6 +24,10 @@ void Passage::sortRow() {
 }  //���ﲻ�ԳƵ��ǲ�֪������ô��
 
 void Passage::input(std::string filePath) {  //�˴��õ����ļ���,���ظ��Լ�
+    for (auto &i : texts) {
+        delete i;
+    }
+    texts.clear();
     std::ifstream mapFile(filePath);
     if (mapFile) {
         std::string mapStr((std::istreambuf_iterator<char>(mapFile)),
@@ -33,6 +37,8 @@ void Passage::input(std::string filePath) {  //�˴��õ����ļ��
             auto words = split(i, " ");
             texts.push_back(new Text(words));
         }
+        // 现在能成功读入文件
+        // std::cout << mapStr << std::endl;
     }
 }
 
@@ -40,10 +46,19 @@ std::string Passage::toStr() {
     std::string tmp;
     std::string temp;
     int n = (signed)rows.size();
-    for (auto i : rows) {
+    for (auto &i : rows) {
         tmp = i->toStr();
         temp += tmp;
         temp += '\n';
     }
     return temp;
+}
+
+void Passage::findWords(std::string words) {
+    auto wordsList = split(words, " ");
+    for (auto &i : texts) {
+        for (auto &word : wordsList) {
+            i->find(word);
+        }
+    }
 }

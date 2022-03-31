@@ -8,16 +8,21 @@
 #include <list>
 #include <string>
 
+#include "Row.h"
 #include "Text.h"
-#include "row.h"
 
 class Passage {
-   public:
+   private:
     std::list<Text *> texts;
     std::list<Row *> rows;
+
+   public:
+    Passage() : texts(), rows() {}
+    virtual ~Passage() {}
     void sortRow();
     void input(std::string filename);
     std::string toStr();
+    void findWords(std::string words);
 };
 
 #endif

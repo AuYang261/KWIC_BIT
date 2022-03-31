@@ -9,12 +9,17 @@
 #include <string>
 
 #include "Text.h"
-#include "Word.h"
+
+class Word;
+
 class Row {
-   public:
-    Row(std::list<Word *>::const_iterator i, Text &t) : pos(i), _text(t) {}
+   private:
     std::list<Word *>::const_iterator pos;  //����operator�鷳��ȫ��д��public
     Text &_text;
+
+   public:
+    Row(std::list<Word *>::const_iterator i, Text &t) : pos(i), _text(t) {}
+    virtual ~Row() {}
     bool operator<(Row &a);  //����const ��ΪҪ����
     std::string toStr();
 };

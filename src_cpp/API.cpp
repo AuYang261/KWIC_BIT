@@ -1,20 +1,26 @@
 #include "PyAPI.h"
 
-static PyObject *_getPassage(PyObject *self, PyObject *args) {
-    std::string s = "hello python!";
-    // return PyAPI::Singleton().getPassage();
-    return PyUnicode_FromString(s.c_str());
-}
-
-static PyObject *_findWord(PyObject *self, PyObject *args) {
-    const char *_word;
-    if (!PyArg_ParseTuple(args, "s", &_word)) {
+static PyObject *_readFile(PyObject *self, PyObject *args) {
+    const char *filePath;
+    if (!PyArg_ParseTuple(args, "s", &filePath)) {
         return NULL;
     }
-    std::cout << _word << std::endl;
+    PyAPI::Singleton().readFile(filePath);
+    return Py_None;
+}
+
+static PyObject *_getPassage(PyObject *self, PyObject *args) {
+    return PyUnicode_FromString(PyAPI::Singleton().getPassage().c_str());
+}
+
+static PyObject *_findWords(PyObject *self, PyObject *args) {
+    const char *_words;
+    if (!PyArg_ParseTuple(args, "s", &_words)) {
+        return NULL;
+    }
+    PyAPI::Singleton().findWords(_words);
     // 不能无返回值，可以返回Py_None
-    return PyUnicode_FromString("Got it!");
-    // return Py_None;
+    return Py_None;
 }
 
 static PyObject *_sort(PyObject *self, PyObject *args) {
@@ -30,8 +36,9 @@ static PyMethodDef ModuleMethods[] = {
         ""                 // 说明文字
     },*/
     {"getPassage", _getPassage, METH_VARARGS, "获取passage"},
-    {"findWord", _findWord, METH_VARARGS, "查找word并标记之"},
+    {"findWords", _findWords, METH_VARARGS, "查找word并标记之"},
     {"sort", _sort, METH_VARARGS, "对各row排序"},
+    {"readFile", _readFile, METH_VARARGS, "读入文件"},
     {NULL, NULL, 0, NULL}};
 
 static struct PyModuleDef cModPyDem = {
