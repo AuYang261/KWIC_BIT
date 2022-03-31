@@ -4,7 +4,6 @@
 #include <list>
 #include <string>
 
-#include "Factory.hpp"
 #include "Word.h"
 
 class Row;

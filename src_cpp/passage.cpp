@@ -20,8 +20,7 @@ std::list<std::string> split(const std::string &str,
 }
 
 void Passage::sortRow() {
-    std::sort(rows.begin(), rows.end(),
-              [](Row *a, Row *b) -> bool { return (*a < *b); });
+    rows.sort([](Row *a, Row *b) -> bool { return (*a < *b); });
 }  //���ﲻ�ԳƵ��ǲ�֪������ô��
 
 void Passage::input(std::string filePath) {  //�˴��õ����ļ���,���ظ��Լ�
