@@ -3,16 +3,10 @@
 // !!!!!!!!!!!!!!!!
 // need completion
 // construct words
-Text::Text(std::vector<std::string> words)
-{
-}
+Text::Text(std::list<std::string> words) {}
 
 // possibly need completion
-Text::~Text()
-{
-}
+Text::~Text() {}
 
 // return a list of rotated rows
-std::vector<Row *> Text::shift()
-{
-}
+std::list<Row *> Text::shift() {}
