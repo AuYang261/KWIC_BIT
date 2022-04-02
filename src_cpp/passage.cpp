@@ -23,7 +23,7 @@ void Passage::sortRow() {
     rows.sort([](Row *a, Row *b) -> bool { return (*a < *b); });
 }  //���ﲻ�ԳƵ��ǲ�֪������ô��
 
-void Passage::input(std::string filePath) {  //�˴��õ����ļ���,���ظ��Լ�
+std::string Passage::input(std::string filePath) {  //�˴��õ����ļ���,���ظ��Լ�
     for (auto &i : texts) {
         delete i;
     }
@@ -39,7 +39,9 @@ void Passage::input(std::string filePath) {  //�˴��õ����ļ��
         }
         // 现在能成功读入文件
         // std::cout << mapStr << std::endl;
+        return mapStr;
     }
+    return "Read file failed!";
 }
 
 std::string Passage::toStr() {

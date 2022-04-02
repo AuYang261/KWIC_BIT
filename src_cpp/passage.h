@@ -20,7 +20,7 @@ class Passage {
     Passage() : texts(), rows() {}
     virtual ~Passage() {}
     void sortRow();
-    void input(std::string filename);
+    std::string input(std::string filename);
     std::string toStr();
     void findWords(std::string words);
 };

@@ -7,7 +7,9 @@ PyAPI &PyAPI::Singleton() {
     return *_singletonPtr;
 }
 
-void PyAPI::readFile(std::string filePath) { _passage->input(filePath); }
+std::string PyAPI::readFile(std::string filePath) {
+    return _passage->input(filePath);
+}
 
 std::string PyAPI::getPassage() { return _passage->toStr(); }
 

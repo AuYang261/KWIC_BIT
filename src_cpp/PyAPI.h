@@ -18,7 +18,7 @@ class PyAPI {
     std::string getPassage();
     void findWords(std::string words);
     void sortPassage();
-    void readFile(std::string filePath);
+    std::string readFile(std::string filePath);
 
    private:
     PyAPI() : _passage(new Passage) {}

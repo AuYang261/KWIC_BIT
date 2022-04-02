@@ -5,8 +5,7 @@ static PyObject *_readFile(PyObject *self, PyObject *args) {
     if (!PyArg_ParseTuple(args, "s", &filePath)) {
         return NULL;
     }
-    PyAPI::Singleton().readFile(filePath);
-    return Py_None;
+    return PyUnicode_FromString(PyAPI::Singleton().readFile(filePath).c_str());
 }
 
 static PyObject *_getPassage(PyObject *self, PyObject *args) {
