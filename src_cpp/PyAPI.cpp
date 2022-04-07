@@ -15,4 +15,4 @@ std::string PyAPI::getPassage() { return _passage->toStr(); }
 
 void PyAPI::findWords(std::string words) { _passage->findWords(words); }
 
-void PyAPI::sortPassage() { _passage->sortRow(); }
+void PyAPI::sortPassage(std::string strategy) { _passage->sortRow(strategy); }

@@ -1,6 +1,6 @@
 #include "Text.h"
 
-#include "Factory.hpp"
+#include "Factory.h"
 
 // !!!!!!!!!!!!!!!!
 // need completion

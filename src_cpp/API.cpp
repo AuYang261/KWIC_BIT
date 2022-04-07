@@ -23,7 +23,11 @@ static PyObject *_findWords(PyObject *self, PyObject *args) {
 }
 
 static PyObject *_sort(PyObject *self, PyObject *args) {
-    // PyAPI::Singleton().sortPassage();
+    const char *_strategy;
+    if (!PyArg_ParseTuple(args, "s", &_strategy)) {
+        return NULL;
+    }
+    PyAPI::Singleton().sortPassage(std::string(_strategy));
     return Py_None;
 }
 

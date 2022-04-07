@@ -1,5 +1,7 @@
 #include "Passage.h"
 
+#include "Factory.h"
+
 std::list<std::string> split(const std::string &str,
                              const std::string &pattern) {
     std::list<std::string> res;
@@ -19,9 +21,12 @@ std::list<std::string> split(const std::string &str,
     return res;
 }
 
-void Passage::sortRow() {
-    rows.sort([](Row *a, Row *b) -> bool { return (*a < *b); });
-}  //���ﲻ�ԳƵ��ǲ�֪������ô��
+void Passage::sortRow(std::string strategy) {
+    if (!sortor->isMe(strategy)) {
+        setSortor(SortorFactory::Singleton().create(strategy));
+    }
+    sortor->sort(rows);
+}
 
 std::string Passage::input(std::string filePath) {  //�˴��õ����ļ���,���ظ��Լ�
     for (auto &i : texts) {
@@ -36,6 +41,7 @@ std::string Passage::input(std::string filePath) {  //�˴��õ�����
         for (auto &i : lines) {
             auto words = split(i, " ");
             texts.push_back(new Text(words));
+            // std::cout << i << std::endl;
         }
         // 现在能成功读入文件
         // std::cout << mapStr << std::endl;

@@ -2,6 +2,7 @@
  */
 
 #ifndef __PyAPI_h__
+#define __PyAPI_h__
 
 #include <Python.h>
 
@@ -17,7 +18,7 @@ class PyAPI {
 
     std::string getPassage();
     void findWords(std::string words);
-    void sortPassage();
+    void sortPassage(std::string strategy);
     std::string readFile(std::string filePath);
 
    private:
