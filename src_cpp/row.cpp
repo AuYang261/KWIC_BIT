@@ -29,6 +29,9 @@ bool Row::operator<(Row &a)  //�ڴ˴�����ѡ��ʹ������
     }
 }
 std::string Row::toStr(bool format) {  // default false
+    if (!_text.isMatch()) {
+        return std::string("");
+    }
     std::string temp;
     auto i = pos;
     do {
