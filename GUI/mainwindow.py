@@ -1,4 +1,4 @@
-from ast import Delete
+
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QApplication, QPushButton, QWidget, QListView, QVBoxLayout, QMainWindow, QMessageBox, QLabel
@@ -28,15 +28,6 @@ class MainWindow(QMainWindow): #主窗口
         self.ui.shift_Button.clicked.connect(partial(self.shift_Button_Output, self.ui))
         self.ui.find_Button.clicked.connect(partial(self.find_Button_Output, self.ui))
 
-        # #关联窗口
-        # contact = self.ui.find_Button
-        # contact.clicked.connect(self.childWindows.show)
-
-    # def fun(self,ui):#对应各功能
-    #     #print(PyAPI.getPassage())
-    #     print('1')
-    #     self.childWindows.HighLight()
-
     def origin_Button_Output(self,ui):
         #str = PyAPI.resdFile()
         self.connect_childwindow('abc',self.ui.origin_Button)
@@ -51,16 +42,20 @@ class MainWindow(QMainWindow): #主窗口
         self.connect_childwindow('hjh',self.ui.shift_Button)
 
     def find_Button_Output(self,ui):
+        #PyAPI.findWords()
         #str = PyAPI.getPassage()
-        self.connect_childwindow('sss',self.ui.find_Button)
-        self.childWindows.HighLight()
+        txt = 'abc*apple*skdjah*apple*banana*apple*'
+        self.get_input()
+        self.connect_childwindow(txt,self.ui.find_Button)
+        self.childWindows.HighLight(self.keyword,txt)
+        #self.childWindows.HighLight()
 
     def connect_childwindow(self,str,contact):
         self.childWindows.ui.wordlist.setText(str)
         contact.clicked.connect(self.childWindows.show)
 
     def get_input(self): #获得要查找的单词
-        keyword = str(self.ui.word_LineEdit.text())
+        self.keyword = self.ui.word_LineEdit.text()
         #这里要传回去
 
 class ChildWindow(QDialog): #子窗口
@@ -74,22 +69,26 @@ class ChildWindow(QDialog): #子窗口
         self.setWindowTitle('查找结果')
         self.resize(1200, 900)
 
-    def HighLight(self):
+    def HighLight(self,keyword,txt):
+
+        keyword_lists = keyword.split(',')
+        txt_lists = txt.split('*')
+
         document = self.ui.wordlist.document()
-        highlight_cursor = QTextCursor(document)
-        cursor = QTextCursor(document)
+        highlight_cursor = QTextCursor()
+        cursor = QTextCursor()
         cursor.beginEditBlock()
 
         color_format = QTextCharFormat(highlight_cursor.charFormat())
         color_format.setBackground(QColor(255,211,6))
 
-        while((not highlight_cursor.isNull()) and (not highlight_cursor.atEnd())):
-            highlight_cursor = document.find('s',highlight_cursor)
-            if not highlight_cursor.isNull():
-                highlight_cursor.mergeCharFormat(color_format)
-        cursor.endEditBlock()    
+        for ch in txt_lists:
 
-    
+            if ch in keyword_lists:
+                highlight_cursor = document.find(ch,highlight_cursor)
+                highlight_cursor.mergeCharFormat(color_format)
+        
+        cursor.endEditBlock()    
 
 if __name__ == '__main__':
     #变量设置及初始化
