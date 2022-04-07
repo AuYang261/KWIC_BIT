@@ -1,4 +1,4 @@
-#include "Passage.h"
+#include "passage.h"
 
 #include "Factory.h"
 
@@ -39,9 +39,7 @@ std::string Passage::input(std::string filePath) {  //�˴��õ�����
                            std::istreambuf_iterator<char>());
         std::list<std::string> lines = split(mapStr, "\n");
         for (auto &i : lines) {
-            auto words = split(i, " ");
-            texts.push_back(new Text(words));
-            // std::cout << i << std::endl;
+            texts.push_back(new Text(i));
         }
         // 现在能成功读入文件
         // std::cout << mapStr << std::endl;

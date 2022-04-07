@@ -49,3 +49,6 @@ build.bat
 
 # log
 *.log
+
+# binary file
+*.pyd
