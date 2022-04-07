@@ -1,4 +1,4 @@
-#include "Passage.h"
+#include "passage.h"
 
 std::list<std::string> split(const std::string &str,
                              const std::string &pattern) {
@@ -34,8 +34,9 @@ void Passage::input(std::string filePath) {  //�˴��õ����ļ��
                            std::istreambuf_iterator<char>());
         std::list<std::string> lines = split(mapStr, "\n");
         for (auto &i : lines) {
-            auto words = split(i, " ");
-            texts.push_back(new Text(words));
+            texts.push_back(new Text(i));
+            // auto words = split(i, " ");
+            // texts.push_back(new Text(words));
         }
         // 现在能成功读入文件
         // std::cout << mapStr << std::endl;

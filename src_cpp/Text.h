@@ -3,22 +3,26 @@
 
 #include <list>
 #include <string>
+#include <vector>
 
 #include "Word.h"
+
+using std::size_t;
 
 class Row;
 
 class Text {
    private:
     std::list<Word *> words;
+    bool match;
 
-   public:
-    Text(std::list<std::string> words);  // need args
+public:
+    Text(std::string text);
     virtual ~Text();
 
-    void notify();
-    void find(std::string pattern);
-    std::list<Row *> shift();
+    void find(std::string patternStr);
+    // std::list<Row *> shift();
+    bool isMatch();
     const std::list<Word *> &getWordsList() const { return words; }
 };
 
