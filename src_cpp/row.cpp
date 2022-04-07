@@ -14,30 +14,32 @@ bool Row::operator<(Row &a)  //�ڴ˴�����ѡ��ʹ������
     };
     std::string str1 = this->toStr();
     std::string str2 = a.toStr();
-
-    int A = 0, B = 0;
-    for (int i = 0; i < (signed)str1.size(); i++) {
-        A += num(str1[i]);
-        B += num(str2[i]);
-        A *= 100;
-        B *= 100;
-    }  //������һ�����ԱȽϴ�С��ת������
-    if (A < B) {
-        return 1;
-    } else if (A == B) {
-        throw("ERROR !");
-    } else
-        return 0;
+    for (int i = 0; i < str1.size(); i++) {
+        if (i == str2.size()) {
+            return false;
+        }
+        if (str1[i] == str2[i]) {
+            continue;
+        }
+        if (num(str1[i]) < num(str2[i])) {  // str1[i] 的序更小，故str1更大
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
-std::string Row::toStr() {
+std::string Row::toStr(bool format) {  // default false
     std::string temp;
     auto i = pos;
     do {
         if (i == _text.getWordsList().end()) {
             continue;
         }
-
-        temp += (*i)->getContent() + ' ';
+        auto w = (*i)->getContent();
+        if (format && (*i)->ifFound()) {
+            w = "*" + w + "*";
+        }
+        temp += w + ' ';
     } while (++i != pos);
 
     return temp;

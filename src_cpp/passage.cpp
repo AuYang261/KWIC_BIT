@@ -55,7 +55,7 @@ std::string Passage::input(std::string filePath) {  //�˴��õ�����
 std::string Passage::toStr() {
     std::string temp;
     for (auto &i : rows) {
-        temp += i->toStr() + '\n';
+        temp += i->toStr(true) + '\n';
     }
     return temp;
 }

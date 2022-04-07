@@ -3,7 +3,6 @@
 // Row.h
 #include <stdlib.h>
 
-#include <algorithm>
 #include <iostream>
 #include <list>
 #include <string>
@@ -21,6 +20,6 @@ class Row {
     Row(std::list<Word *>::const_iterator i, Text &t) : pos(i), _text(t) {}
     virtual ~Row() {}
     bool operator<(Row &a);  //����const ��ΪҪ����
-    std::string toStr();
+    std::string toStr(bool format = false);
 };
 #endif

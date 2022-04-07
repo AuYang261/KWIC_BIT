@@ -4,6 +4,7 @@
 #ifndef __Sortor_h__
 #define __Sortor_h__
 
+#include <algorithm>
 #include <list>
 #include <string>
 
