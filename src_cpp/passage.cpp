@@ -41,6 +41,10 @@ std::string Passage::input(std::string filePath) {  //�˴��õ�����
         for (auto &i : lines) {
             texts.push_back(new Text(i));
         }
+        for (auto &t : texts) {
+            auto _rows = t->shift();
+            rows.insert(rows.end(), _rows.begin(), _rows.end());
+        }
         // 现在能成功读入文件
         // std::cout << mapStr << std::endl;
         return mapStr;
@@ -49,13 +53,9 @@ std::string Passage::input(std::string filePath) {  //�˴��õ�����
 }
 
 std::string Passage::toStr() {
-    std::string tmp;
     std::string temp;
-    int n = (signed)rows.size();
     for (auto &i : rows) {
-        tmp = i->toStr();
-        temp += tmp;
-        temp += '\n';
+        temp += i->toStr() + '\n';
     }
     return temp;
 }

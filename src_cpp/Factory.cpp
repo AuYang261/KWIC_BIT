@@ -1,12 +1,12 @@
 #include "Factory.h"
 
 std::list<Row*> RowFactory::shift(Text* _text) {
-    auto ret = new std::list<Row*>;
+    std::list<Row*> ret;
     for (auto i = _text->getWordsList().begin();
          i != _text->getWordsList().end(); i++) {
-        ret->push_back(new Row(i, *_text));
+        ret.push_back(new Row(i, *_text));
     }
-    return *ret;
+    return ret;
 }
 
 RowFactory& RowFactory::Singleton() {

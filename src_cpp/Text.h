@@ -16,12 +16,12 @@ class Text {
     std::list<Word *> words;
     bool match;
 
-public:
+   public:
     Text(std::string text);
     virtual ~Text();
 
     void find(std::string patternStr);
-    // std::list<Row *> shift();
+    std::list<Row *> shift();
     bool isMatch();
     const std::list<Word *> &getWordsList() const { return words; }
 };

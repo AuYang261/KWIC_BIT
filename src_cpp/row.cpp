@@ -14,6 +14,7 @@ bool Row::operator<(Row &a)  //�ڴ˴�����ѡ��ʹ������
     };
     std::string str1 = this->toStr();
     std::string str2 = a.toStr();
+
     int A = 0, B = 0;
     for (int i = 0; i < (signed)str1.size(); i++) {
         A += num(str1[i]);
@@ -30,19 +31,14 @@ bool Row::operator<(Row &a)  //�ڴ˴�����ѡ��ʹ������
 }
 std::string Row::toStr() {
     std::string temp;
-    auto tempPos = pos;
-    for (auto i = pos;;) {
+    auto i = pos;
+    do {
         if (i == _text.getWordsList().end()) {
             continue;
         }
-        auto tmp = (*i)->getContent();
-        temp += tmp;
-        temp += ' ';
 
-        i++;
-        if (i == tempPos) {
-            break;
-        }
-    }
+        temp += (*i)->getContent() + ' ';
+    } while (++i != pos);
+
     return temp;
 };
