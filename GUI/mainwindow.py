@@ -1,5 +1,4 @@
-from operator import index
-import string
+
 import os
 import sys
 from PyQt5.QtWidgets import *
@@ -66,8 +65,8 @@ class MainWindow(QMainWindow): #主窗口
         self.get_input()
         PyAPI.findWords(self.keyword)
         strs = PyAPI.getPassage()
-        self.connect_childwindow(strs,self.ui.find_Button)
-        self.childWindows.HighLight(self.keyword,strs)
+        self.connect_childwindow('abc *abc* aosidhaidsh',self.ui.find_Button)
+        self.childWindows.HighLight(self.keyword,'abc *abc* aosidhaidsh')
 
     def connect_childwindow(self,str,contact):
         self.childWindows.ui.wordlist.setText(str)
@@ -77,12 +76,10 @@ class MainWindow(QMainWindow): #主窗口
         self.keyword = self.ui.word_LineEdit.text()
 
     def file_Button_Open(self):
-        fileName,fileType = QFileDialog.getOpenFileName(self, "选取文件", os.getcwd())
+        fileName,fileType = QFileDialog.getOpenFileName(self, "选取文件", os.getcwd(), "Text Files(*.txt)")
         self.filename = fileName
         self.ui.file_browser.setText(fileName)
 
-    def choice_Button_Output(self,i):
-        print(i)
 
 class ChildWindow(QDialog): #子窗口
 
@@ -98,7 +95,7 @@ class ChildWindow(QDialog): #子窗口
     def HighLight(self,keyword,txt):
 
         keyword_lists = keyword.split(',')
-        txt_lists = txt.split('*')
+        keyword_lists = ['*' + keyword_lists[i] + '*' for i in range(len(keyword_lists))]
 
         document = self.ui.wordlist.document()
         highlight_cursor = QTextCursor()
@@ -108,11 +105,9 @@ class ChildWindow(QDialog): #子窗口
         color_format = QTextCharFormat(highlight_cursor.charFormat())
         color_format.setBackground(QColor(255,211,6))
 
-        for ch in txt_lists:
-
-            if ch in keyword_lists:
-                highlight_cursor = document.find(ch,highlight_cursor)
-                highlight_cursor.mergeCharFormat(color_format)
+        for ch in keyword_lists:
+            highlight_cursor = document.find(ch,highlight_cursor)
+            highlight_cursor.mergeCharFormat(color_format)
         
         cursor.endEditBlock()    
 
