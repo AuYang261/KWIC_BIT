@@ -32,7 +32,11 @@ std::string Passage::input(std::string filePath) {  //�˴��õ�����
     for (auto &i : texts) {
         delete i;
     }
+    for (auto &i : rows) {
+        delete i;
+    }
     texts.clear();
+    rows.clear();
     std::ifstream mapFile(filePath);
     if (mapFile) {
         std::string mapStr((std::istreambuf_iterator<char>(mapFile)),
@@ -45,6 +49,7 @@ std::string Passage::input(std::string filePath) {  //�˴��õ�����
             auto _rows = t->shift();
             rows.insert(rows.end(), _rows.begin(), _rows.end());
         }
+        mapFile.close();
         return mapStr;
     }
     return "Read file failed!";
