@@ -3,22 +3,21 @@
 
 #include <string>
 
-class Word
-{
-private:
-	std::string content;
-	bool flagFound;
+class Word {
+   private:
+    std::string content;
+    bool flagFound;
 
-public:
-	Word(std::string initContent);
-	~Word();
-	// content
-	std::string getContent();
-	void updateContent(std::string newContent);
+   public:
+    Word(std::string initContent);
+    ~Word();
+    // content
+    std::string getContent();
+    void updateContent(std::string newContent);
 
-	// flagfound
-	bool ifFound();
-	void setFound(bool found);
+    // flagfound
+    bool isFound();
+    void setFound(bool found);
 };
 
 #endif
