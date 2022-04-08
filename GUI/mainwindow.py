@@ -76,7 +76,7 @@ class MainWindow(QMainWindow): #主窗口
         self.keyword = self.ui.word_LineEdit.text()
 
     def file_Button_Open(self):
-        fileName,fileType = QFileDialog.getOpenFileName(self, "选取文件", os.getcwd(), "Text Files(*.txt)")
+        fileName,fileType = QFileDialog.getOpenFileName(self, "选取文件", os.getcwd())
         self.filename = fileName
         self.ui.file_browser.setText(fileName)
 
