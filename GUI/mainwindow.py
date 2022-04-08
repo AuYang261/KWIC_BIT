@@ -1,7 +1,9 @@
-
+from operator import index
+import string
+import os
 import sys
 from PyQt5.QtWidgets import *
-from PyQt5.QtWidgets import QApplication, QPushButton, QWidget, QListView, QVBoxLayout, QMainWindow, QMessageBox, QLabel
+from PyQt5.QtWidgets import QApplication, QPushButton, QWidget, QListView, QVBoxLayout, QMainWindow, QMessageBox, QLabel,QFileDialog,QComboBox
 from PyQt5.QtGui import QIcon,QTextCursor,QTextCharFormat,QColor
 import Ui_kwic_ui
 import Ui_childwindow
@@ -13,42 +15,59 @@ class MainWindow(QMainWindow): #主窗口
     def __init__(self,):
         super().__init__()
         self.ui = Ui_kwic_ui.Ui_MainWindow()
+        self.keyword = ''
+        self.filename = "D:\learn\\2021-2022-2\software engineering\\try.txt"
         self.childWindows = ChildWindow()
         self.childWindows.ui.setupUi(self.childWindows)
         self.childWindows.window_init()
+        # self.choice_Button = QComboBox(self)
+        # self.choice_Button.currentIndexChanged[str].connect(self.sortRow_Button_Output)
 
     def window_init(self):
-        #设置窗体基本参数
+        #设置基本参数
         self.setWindowTitle('KWIC')
         self.resize(1500, 1200)
-
+        # self.choice_Button.addItem('STL',0)
+        # self.choice_Button.addItem('堆排序',1)
+        
         #按钮功能
-        self.ui.origin_Button.clicked.connect(partial(self.origin_Button_Output, self.ui))
-        self.ui.sortRow_Button.clicked.connect(partial(self.sortRow_Button_Output, self.ui))
-        self.ui.shift_Button.clicked.connect(partial(self.shift_Button_Output, self.ui))
-        self.ui.find_Button.clicked.connect(partial(self.find_Button_Output, self.ui))
+        self.ui.origin_Button.clicked.connect(self.origin_Button_Output)
+        self.ui.sortRow_Button.clicked.connect(self.sortRow_Button_Output)
+        self.ui.sortRow_Button2.clicked.connect(self.sortRow_Button2_Output)
+        self.ui.shift_Button.clicked.connect(self.shift_Button_Output)
+        self.ui.find_Button.clicked.connect(self.find_Button_Output)
+        self.ui.file_Button.clicked.connect(self.file_Button_Open)
 
-    def origin_Button_Output(self,ui):
-        #str = PyAPI.resdFile()
-        self.connect_childwindow('abc',self.ui.origin_Button)
 
-    def sortRow_Button_Output(self,ui):
-        #PyAPI.sort()
-        #str = PyAPI.getPassage()
-        self.connect_childwindow('def',self.ui.sortRow_Button)
 
-    def shift_Button_Output(self,ui):
-        #str = PyAPI.getPassage()
-        self.connect_childwindow('hjh',self.ui.shift_Button)
+    def origin_Button_Output(self):
+        strs = PyAPI.readFile(self.filename) 
+        self.connect_childwindow(strs,self.ui.origin_Button)
 
-    def find_Button_Output(self,ui):
-        #PyAPI.findWords()
-        #str = PyAPI.getPassage()
-        txt = 'abc*apple*skdjah*apple*banana*apple*'
+
+    def sortRow_Button_Output(self):
+        # strategy = ['Sortor1','Sortor2']
+        # index = self.choice_Button.currentIndex()
+        # PyAPI.sort(strategy[index])
+        PyAPI.sort('Sortor1')
+        strs = PyAPI.getPassage()
+        self.connect_childwindow(strs,self.ui.sortRow_Button)
+
+    def sortRow_Button2_Output(self):
+        PyAPI.sort('Sortor2')
+        strs = PyAPI.getPassage()
+        self.connect_childwindow(strs,self.ui.sortRow_Button2)
+
+    def shift_Button_Output(self):
+        strs = PyAPI.getPassage()
+        self.connect_childwindow(strs,self.ui.shift_Button)
+
+    def find_Button_Output(self):
         self.get_input()
-        self.connect_childwindow(txt,self.ui.find_Button)
-        self.childWindows.HighLight(self.keyword,txt)
-        #self.childWindows.HighLight()
+        PyAPI.findWords(self.keyword)
+        strs = PyAPI.getPassage()
+        self.connect_childwindow(strs,self.ui.find_Button)
+        self.childWindows.HighLight(self.keyword,strs)
 
     def connect_childwindow(self,str,contact):
         self.childWindows.ui.wordlist.setText(str)
@@ -56,7 +75,14 @@ class MainWindow(QMainWindow): #主窗口
 
     def get_input(self): #获得要查找的单词
         self.keyword = self.ui.word_LineEdit.text()
-        #这里要传回去
+
+    def file_Button_Open(self):
+        fileName,fileType = QFileDialog.getOpenFileName(self, "选取文件", os.getcwd(), "Text Files(*.txt)")
+        self.filename = fileName
+        self.ui.file_browser.setText(fileName)
+
+    def choice_Button_Output(self,i):
+        print(i)
 
 class ChildWindow(QDialog): #子窗口
 
@@ -96,11 +122,5 @@ if __name__ == '__main__':
     MainWindows = MainWindow()
     MainWindows.ui.setupUi(MainWindows)
     MainWindows.window_init()
-
-    # #关联窗口
-    # contact = MainWindows.ui.find_Button
-    # contact.clicked.connect(MainWindows.childWindows.show)
-
-    MainWindows.get_input()
     MainWindows.show()
     sys.exit(app.exec())
