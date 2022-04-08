@@ -51,4 +51,4 @@ build.bat
 *.log
 
 # binary file
-*.pyd
+# *.pyd

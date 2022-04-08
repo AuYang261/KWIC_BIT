@@ -35,7 +35,7 @@ void Text::find(std::string patternStr) {
 
     // find
     // refresh flagFound
-    for (auto word : words) word->setFound(false);
+    this->cleanFound();
 
     for (auto pattern : patterns) {
         bool singleMatch = false;

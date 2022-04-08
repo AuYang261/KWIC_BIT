@@ -21,5 +21,6 @@ class Row {
     virtual ~Row() {}
     bool operator<(Row &a);  //����const ��ΪҪ����
     std::string toStr(bool format = false);
+    bool isMatch() { return _text.isMatch(); }
 };
 #endif

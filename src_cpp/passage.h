@@ -17,13 +17,14 @@ class Passage {
     std::list<Text *> texts;
     std::list<Row *> rows;
     Sortor *sortor;
+    bool findMode;  // 查找模式，不显示不含查找词的行
     void setSortor(Sortor *newSortor) {
         delete sortor;
         sortor = newSortor;
     }
 
    public:
-    Passage() : texts(), rows(), sortor(new Sortor1()) {}
+    Passage() : texts(), rows(), sortor(new Sortor1()), findMode(false) {}
     virtual ~Passage() { delete sortor; }
     void sortRow(std::string strategy);
     std::string input(std::string filename);

@@ -45,8 +45,6 @@ std::string Passage::input(std::string filePath) {  //�˴��õ�����
             auto _rows = t->shift();
             rows.insert(rows.end(), _rows.begin(), _rows.end());
         }
-        // 现在能成功读入文件
-        // std::cout << mapStr << std::endl;
         return mapStr;
     }
     return "Read file failed!";
@@ -55,20 +53,26 @@ std::string Passage::input(std::string filePath) {  //�˴��õ�����
 std::string Passage::toStr() {
     std::string temp;
     for (auto &i : rows) {
-        auto s = i->toStr(true);
-        if (s == "") {
+        if (findMode && !i->isMatch()) {
             continue;
         }
-        temp += s + '\n';
+        temp += i->toStr(true) + '\n';
     }
     return temp;
 }
 
 void Passage::findWords(std::string words) {
-    auto wordsList = split(words, " ");
-    for (auto &i : texts) {
-        for (auto &word : wordsList) {
-            i->find(word);
+    if (words == "") {  // words == ""则取消查找模式
+        findMode = false;
+        for (auto &i : texts) {
+            i->cleanFound();
+        }
+    } else {
+        auto wordsList = split(words, " ");
+        for (auto &i : texts) {
+            for (auto &word : wordsList) {
+                i->find(word);
+            }
         }
     }
 }

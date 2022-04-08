@@ -24,6 +24,9 @@ class Text {
     std::list<Row *> shift();
     bool isMatch();
     const std::list<Word *> &getWordsList() const { return words; }
+    void cleanFound() {
+        for (auto &w : words) w->setFound(false);
+    }
 };
 
 #endif
