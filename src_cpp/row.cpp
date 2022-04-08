@@ -36,7 +36,7 @@ std::string Row::toStr(bool format) {  // default false
             continue;
         }
         auto w = (*i)->getContent();
-        if (format && (*i)->ifFound()) {
+        if (format && (*i)->isFound()) {
             w = "*" + w + "*";
         }
         temp += w + ' ';
