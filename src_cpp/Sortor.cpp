@@ -1,14 +1,20 @@
 #include "Sortor.h"
 #include<iostream>
 #include<vector>
-void adjust(vector<int> &arr, int len, int index)
+void swap(Row* &a, Row* &b)
+{
+    auto temp = a;
+    a = b;
+    b = temp;
+}
+void adjust(std::vector<Row *> &arr, int len, int index)
 {
     int left = 2*index + 1; // index的左子节点
     int right = 2*index + 2;// index的右子节点
  
     int maxIdx = index;
-    if(left<len && arr[left] > arr[maxIdx])     maxIdx = left;
-    if(right<len && arr[right] > arr[maxIdx])     maxIdx = right;
+    if(left<len && arr[maxIdx] < arr[left])     maxIdx = left;
+    if(right<len && arr[maxIdx] < arr[right])     maxIdx = right;
  
     if(maxIdx != index)
     {
@@ -19,7 +25,7 @@ void adjust(vector<int> &arr, int len, int index)
 }
  
 // 堆排序
-void heapSort(vector<int> &arr, int size)
+void heapSort(std::vector<Row*> &arr, int size)
 {
     // 构建大根堆（从最后一个非叶子节点向上）
     for(int i=size/2 - 1; i >= 0; i--)
