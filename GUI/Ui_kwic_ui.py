@@ -14,51 +14,51 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(885, 646)
+        MainWindow.resize(808, 654)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
-        self.word_LineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.word_LineEdit.setObjectName("word_LineEdit")
-        self.gridLayout.addWidget(self.word_LineEdit, 10, 0, 1, 1)
+        self.file_Button = QtWidgets.QPushButton(self.centralwidget)
+        self.file_Button.setObjectName("file_Button")
+        self.gridLayout.addWidget(self.file_Button, 2, 0, 1, 1)
         self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser.setEnabled(False)
         self.textBrowser.setObjectName("textBrowser")
-        self.gridLayout.addWidget(self.textBrowser, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.textBrowser, 0, 0, 1, 2)
         self.sortRow_Button2 = QtWidgets.QPushButton(self.centralwidget)
         self.sortRow_Button2.setObjectName("sortRow_Button2")
-        self.gridLayout.addWidget(self.sortRow_Button2, 7, 0, 1, 1)
-        self.shift_Button = QtWidgets.QPushButton(self.centralwidget)
-        self.shift_Button.setEnabled(True)
-        self.shift_Button.setObjectName("shift_Button")
-        self.gridLayout.addWidget(self.shift_Button, 8, 0, 1, 1)
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setObjectName("label")
-        self.gridLayout.addWidget(self.label, 9, 0, 1, 1)
-        self.origin_Button = QtWidgets.QPushButton(self.centralwidget)
-        self.origin_Button.setEnabled(True)
-        self.origin_Button.setObjectName("origin_Button")
-        self.gridLayout.addWidget(self.origin_Button, 5, 0, 1, 1)
-        self.find_Button = QtWidgets.QPushButton(self.centralwidget)
-        self.find_Button.setEnabled(True)
-        self.find_Button.setObjectName("find_Button")
-        self.gridLayout.addWidget(self.find_Button, 15, 0, 1, 1)
-        self.file_browser = QtWidgets.QTextBrowser(self.centralwidget)
-        self.file_browser.setEnabled(False)
-        self.file_browser.setObjectName("file_browser")
-        self.gridLayout.addWidget(self.file_browser, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.sortRow_Button2, 6, 0, 1, 1)
         self.textBrowser_2 = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser_2.setEnabled(False)
         self.textBrowser_2.setObjectName("textBrowser_2")
         self.gridLayout.addWidget(self.textBrowser_2, 1, 0, 1, 1)
+        self.origin_Button = QtWidgets.QPushButton(self.centralwidget)
+        self.origin_Button.setEnabled(True)
+        self.origin_Button.setObjectName("origin_Button")
+        self.gridLayout.addWidget(self.origin_Button, 4, 0, 1, 1)
         self.sortRow_Button = QtWidgets.QPushButton(self.centralwidget)
         self.sortRow_Button.setEnabled(True)
         self.sortRow_Button.setObjectName("sortRow_Button")
-        self.gridLayout.addWidget(self.sortRow_Button, 6, 0, 1, 1)
-        self.file_Button = QtWidgets.QPushButton(self.centralwidget)
-        self.file_Button.setObjectName("file_Button")
-        self.gridLayout.addWidget(self.file_Button, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.sortRow_Button, 5, 0, 1, 1)
+        self.file_browser = QtWidgets.QTextBrowser(self.centralwidget)
+        self.file_browser.setEnabled(False)
+        self.file_browser.setObjectName("file_browser")
+        self.gridLayout.addWidget(self.file_browser, 3, 0, 1, 1)
+        self.shift_Button = QtWidgets.QPushButton(self.centralwidget)
+        self.shift_Button.setEnabled(True)
+        self.shift_Button.setObjectName("shift_Button")
+        self.gridLayout.addWidget(self.shift_Button, 7, 0, 1, 1)
+        self.word_LineEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.word_LineEdit.setObjectName("word_LineEdit")
+        self.gridLayout.addWidget(self.word_LineEdit, 8, 0, 1, 1)
+        self.find_Button = QtWidgets.QPushButton(self.centralwidget)
+        self.find_Button.setEnabled(True)
+        self.find_Button.setObjectName("find_Button")
+        self.gridLayout.addWidget(self.find_Button, 9, 0, 1, 1)
+        self.widget = QtWidgets.QWidget(self.centralwidget)
+        self.widget.setGeometry(QtCore.QRect(10, 0, 120, 80))
+        self.widget.setObjectName("widget")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -70,6 +70,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.file_Button.setText(_translate("MainWindow", "选择文件"))
         self.textBrowser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -77,19 +78,17 @@ class Ui_MainWindow(object):
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:72pt; font-weight:600; font-style:italic;\">K W I C</span></p>\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:22pt; font-weight:600; font-style:italic;\">by 1,2,3,4</span></p></body></html>"))
         self.sortRow_Button2.setText(_translate("MainWindow", "堆排序产生结果"))
-        self.shift_Button.setText(_translate("MainWindow", "输出循环移位结果"))
-        self.label.setText(_translate("MainWindow", "输入查找词"))
-        self.origin_Button.setText(_translate("MainWindow", "输出原文本"))
-        self.find_Button.setText(_translate("MainWindow", "输出查找结果"))
-        self.file_browser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">D:\\learn\\2021-2022-2\\software industy\\KWIC_BIT\\LICENSE</span></p></body></html>"))
         self.textBrowser_2.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">使用指南：</span></p></body></html>"))
+        self.origin_Button.setText(_translate("MainWindow", "输出原文本"))
         self.sortRow_Button.setText(_translate("MainWindow", "STL排序产生结果"))
-        self.file_Button.setText(_translate("MainWindow", "选择文件"))
+        self.file_browser.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">D:\\learn\\2021-2022-2\\software industy\\KWIC_BIT\\LICENSE</span></p></body></html>"))
+        self.shift_Button.setText(_translate("MainWindow", "输出循环移位结果"))
+        self.find_Button.setText(_translate("MainWindow", "输出查找结果"))
