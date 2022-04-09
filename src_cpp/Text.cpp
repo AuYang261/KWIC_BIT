@@ -33,10 +33,6 @@ void Text::find(std::string patternStr) {
     }
     patterns.push_back(patternStr.substr(last));
 
-    // find
-    // refresh flagFound
-    this->cleanFound();
-
     for (auto pattern : patterns) {
         bool singleMatch = false;
         for (auto word : words) {

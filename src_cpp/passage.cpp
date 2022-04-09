@@ -75,6 +75,7 @@ void Passage::findWords(std::string words) {
     } else {
         auto wordsList = split(words, " ");
         for (auto &i : texts) {
+            i->cleanFound();
             for (auto &word : wordsList) {
                 i->find(word);
             }
