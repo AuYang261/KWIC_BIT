@@ -6,33 +6,9 @@ from PyQt5.QtWidgets import QApplication, QPushButton, QWidget, QListView, QVBox
 from PyQt5.QtGui import QIcon,QTextCursor,QTextCharFormat,QColor
 import Ui_kwic_ui
 import Ui_childwindow
-from functools import partial
+from qt_material import apply_stylesheet
+from qt_material import list_themes
 import PyAPI
-
-Button = ''' 
-            QPushButton
-            {text-align : center;
-            background-color :rgb(254,254,187);
-            font: bold;
-            border-color: rgb(254,254,187);
-            border-width: 2px;
-            border-radius: 10px;
-            padding: 6px;
-            height : 14px;
-            border-style: outset;
-            font : 14px;}
-            QPushButton:pressed
-            {text-align : center;
-            background-color : light gray;
-            font: bold;
-            border-color: gray;
-            border-width: 2px;
-            border-radius: 10px;
-            padding: 6px;
-            height : 14px;
-            border-style: outset;
-            font : 14px;}
-            '''
 
 class MainWindow(QMainWindow): #主窗口
 
@@ -48,13 +24,7 @@ class MainWindow(QMainWindow): #主窗口
     def window_init(self):
         #设置基本参数
         self.setWindowTitle('KWIC')
-        self.resize(1500, 1200)
-        self.ui.origin_Button.setStyleSheet(Button)
-        self.ui.sortRow_Button.setStyleSheet(Button)
-        self.ui.sortRow_Button2.setStyleSheet(Button)
-        self.ui.shift_Button.setStyleSheet(Button)
-        self.ui.find_Button.setStyleSheet(Button)
-        self.ui.file_Button.setStyleSheet(Button)
+        self.resize(1200, 900)
         
         #按钮功能
         self.ui.origin_Button.clicked.connect(self.origin_Button_Output)
@@ -107,7 +77,6 @@ class MainWindow(QMainWindow): #主窗口
     def file_Button_Open(self):
         fileName,fileType = QFileDialog.getOpenFileName(self, "选取文件", os.getcwd(), "All Files(*);;Text Files(*.txt)")
         self.filename = fileName
-        self.ui.file_browser.setFontPointSize(20)
         self.ui.file_browser.setText(fileName)
 
 
@@ -120,25 +89,24 @@ class ChildWindow(QDialog): #子窗口
     def window_init(self):
         #设置窗体基本参数
         self.setWindowTitle('结果')
-        self.resize(1200, 900)
+        self.resize(1500, 1200)
 
     def HighLight(self,keyword,txt):
 
         keyword_lists = keyword.split(' ')
         keyword_lists = ['*' + keyword_lists[i] + '*' for i in range(len(keyword_lists))]
-        print(keyword_lists)
 
         document = self.ui.wordlist.document()
         cursor = QTextCursor(document)
         cursor.beginEditBlock()
 
-        color = [255,211,6,252,229,223,135,206,255,128,118,105]
+        color = [0x65,0x65,0x65,0xFF,0xD5,0x4F,0x30,0x4F,0xFE]
 
         for i in range(len(keyword_lists)):
 
             highlight_cursor = QTextCursor(document)
             color_format = QTextCharFormat(highlight_cursor.charFormat())
-            color_format.setBackground(QColor(color[i % 4],color[(1 + i) % 4],color[(2 + i) % 4]))
+            color_format.setBackground(QColor(color[3 * i % 9],color[(1 + 3 * i) % 9],color[(2 + 3 * i) % 9]))
             while (not highlight_cursor.isNull()) and (not highlight_cursor.atEnd()): 
                 highlight_cursor = document.find(keyword_lists[i], highlight_cursor)
                 if not highlight_cursor.isNull():
@@ -151,6 +119,8 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     MainWindows = MainWindow()
     MainWindows.ui.setupUi(MainWindows)
+    apply_stylesheet(app, theme='dark_teal.xml')
+    list_themes()
     MainWindows.window_init()
     MainWindows.show()
     sys.exit(app.exec())
