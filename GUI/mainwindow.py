@@ -7,7 +7,7 @@ from PyQt5.QtGui import QIcon,QTextCursor,QTextCharFormat,QColor
 import Ui_kwic_ui
 import Ui_childwindow
 from functools import partial
-#import PyAPI
+import PyAPI
 
 Button = ''' 
             QPushButton
@@ -124,7 +124,7 @@ class ChildWindow(QDialog): #子窗口
 
     def HighLight(self,keyword,txt):
 
-        keyword_lists = keyword.split(',')
+        keyword_lists = keyword.split(' ')
         keyword_lists = ['*' + keyword_lists[i] + '*' for i in range(len(keyword_lists))]
         print(keyword_lists)
 
