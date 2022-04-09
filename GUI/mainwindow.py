@@ -77,7 +77,7 @@ class MainWindow(QMainWindow): #主窗口
     def file_Button_Open(self):
         fileName,fileType = QFileDialog.getOpenFileName(self, "选取文件", os.getcwd(), "All Files(*);;Text Files(*.txt)")
         self.filename = fileName
-        self.ui.file_browser.setText(fileName)
+        self.ui.file_broswer.setText(fileName)
 
 
 class ChildWindow(QDialog): #子窗口
@@ -89,7 +89,7 @@ class ChildWindow(QDialog): #子窗口
     def window_init(self):
         #设置窗体基本参数
         self.setWindowTitle('结果')
-        self.resize(1500, 1200)
+        self.resize(1600, 900)
 
     def HighLight(self,keyword,txt):
 
