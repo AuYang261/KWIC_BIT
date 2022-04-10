@@ -51,3 +51,7 @@ void Text::find(std::string patternStr) {
 std::list<Row *> Text::shift() { return RowFactory::Singleton().shift(this); }
 
 bool Text::isMatch() { return match; }
+
+void Text::cleanFound() {
+        for (auto &w : words) w->setFound(false);
+    }
