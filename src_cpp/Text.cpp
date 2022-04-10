@@ -19,31 +19,10 @@ Text::~Text() {
 }
 
 void Text::find(std::string patternStr) {
-    std::vector<std::string> patterns;
-    match = true;
-
-    // split the patterns
-    size_t last = 0;
-    for (size_t index = patternStr.find_first_of(" ");
-         index != std::string::npos;) {
-        if (index - last > 0)
-            patterns.push_back(patternStr.substr(last, index - last));
-        last = index + 1;
-        index = patternStr.find_first_of(" ", last);
-    }
-    patterns.push_back(patternStr.substr(last));
-
-    for (auto pattern : patterns) {
-        bool singleMatch = false;
-        for (auto word : words) {
-            if (pattern == word->getContent()) {
-                singleMatch = true;
-                word->setFound(true);
-            }
-        }
-        if (!singleMatch) {
-            match = false;
-            return;
+    for (auto &word : words) {
+        if (patternStr == word->getContent()) {
+            match = true;
+            word->setFound(true);
         }
     }
 }
@@ -53,5 +32,5 @@ std::list<Row *> Text::shift() { return RowFactory::Singleton().shift(this); }
 bool Text::isMatch() { return match; }
 
 void Text::cleanFound() {
-        for (auto &w : words) w->setFound(false);
-    }
+    for (auto &w : words) w->setFound(false);
+}

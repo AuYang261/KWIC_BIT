@@ -63,22 +63,19 @@ std::string Passage::toStr() {
         }
         temp += i->toStr(true) + '\n';
     }
+    if (findMode) {  //查找模式为一次性的
+        findMode = false;
+    }
     return temp;
 }
 
 void Passage::findWords(std::string words) {
-    if (words == "") {  // words == ""则取消查找模式
-        findMode = false;
-        for (auto &i : texts) {
-            i->cleanFound();
-        }
-    } else {
-        auto wordsList = split(words, " ");
-        for (auto &i : texts) {
-            i->cleanFound();
-            for (auto &word : wordsList) {
-                i->find(word);
-            }
+    findMode = true;
+    auto wordsList = split(words, " ");
+    for (auto &i : texts) {
+        i->cleanFound();
+        for (auto &word : wordsList) {
+            i->find(word);
         }
     }
 }
