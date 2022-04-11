@@ -1,0 +1,31 @@
+beijing university
+Beijing institute of technology
+the University of Texas at Dallas
+//////////////移位结果/////////////////////////
+beijing university
+university beijing
+
+Beijing institute of technology
+institute of technology Beijing 
+of technology Beijing institute 
+technology Beijing institute of 
+
+the University of Technology at Dallas
+University of Technology at Dallas the
+of Technology at Dallas the University
+Technology at Dallas the University of 
+at Dallas the University of Technology 
+Dallas the University of Technology at 
+//////////////排序结果///////////////////////////////
+at Dallas the University of Texas
+beijing university
+Beijing institute of technology
+Dallas the University of Texas at 
+institute of technology Beijing
+of technology Beijing institute
+of Texas at Dallas the University
+technology Beijing institute of 
+the University of Texas at Dallas
+Texas at Dallas the University of 
+university beijing
+University of Texas at Dallas the
