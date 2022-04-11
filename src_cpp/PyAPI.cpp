@@ -11,7 +11,13 @@ std::string PyAPI::readFile(std::string filePath) {
     return _passage->input(filePath);
 }
 
-std::string PyAPI::getPassage() { return _passage->toStr(); }
+std::string PyAPI::getPassage() {
+    std::string s = _passage->toStr();
+    std::ofstream o("../output.txt");
+    o << s;
+    return s;
+    // return _passage->toStr();
+}
 
 void PyAPI::findWords(std::string words) { _passage->findWords(words); }
 
